@@ -32,7 +32,7 @@ export type Member = {
   silhouette: { webp: string; png: string; width: number; height: number }
   /** カードの背景バリエーション */
   tone: 'pink' | 'blush' | 'paper' | 'stripe' | 'dot'
-  /** true になるまでは COMING SOON 表示 */
+  /** false の間は名前を「？？？」で隠す */
   revealed: boolean
   profile: MemberProfile
 }
@@ -45,13 +45,19 @@ const sil = (n: number, width: number, height: number) => ({
 })
 
 export const members: Member[] = [
-  { slug: 'member-01', number: '01', silhouette: sil(1, 567, 1467), tone: 'pink', revealed: false, profile: {} },
-  { slug: 'member-02', number: '02', silhouette: sil(2, 618, 1474), tone: 'blush', revealed: false, profile: {} },
-  { slug: 'member-03', number: '03', silhouette: sil(3, 986, 1498), tone: 'dot', revealed: false, profile: {} },
-  { slug: 'member-04', number: '04', silhouette: sil(4, 743, 1469), tone: 'stripe', revealed: false, profile: {} },
-  { slug: 'member-05', number: '05', silhouette: sil(5, 755, 1494), tone: 'paper', revealed: false, profile: {} },
+  { slug: 'member-01', number: '01', silhouette: sil(1, 567, 1467), tone: 'pink', revealed: true, profile: { name: '花城 えりか', nameRoman: 'HANASHIRO ERIKA' } },
+  { slug: 'member-02', number: '02', silhouette: sil(2, 618, 1474), tone: 'blush', revealed: true, profile: { name: '鈴鳴 みみ', nameRoman: 'SUZUNARI MIMI' } },
+  { slug: 'member-03', number: '03', silhouette: sil(3, 986, 1498), tone: 'dot', revealed: true, profile: { name: '星乃 いのり', nameRoman: 'HOSHINO INORI' } },
+  { slug: 'member-04', number: '04', silhouette: sil(4, 743, 1469), tone: 'stripe', revealed: true, profile: { name: '月城 ことね', nameRoman: 'TSUKISHIRO KOTONE' } },
+  { slug: 'member-05', number: '05', silhouette: sil(5, 755, 1494), tone: 'paper', revealed: true, profile: { name: '茜崎 レイ', nameRoman: 'AKANEZAKI REI' } },
 ]
 
 export const memberBySlug = (slug?: string) => members.find((m) => m.slug === slug)
+
+/** 名前以外のプロフィールが1つでも入っているか */
+export const hasProfile = (m: Member) => {
+  const { name: _n, nameRoman: _r, color: _c, ...rest } = m.profile
+  return Object.values(rest).some((v) => (Array.isArray(v) ? v.length > 0 : !!v))
+}
 
 export const displayName = (m: Member) => (m.revealed && m.profile.name ? m.profile.name : '？？？')

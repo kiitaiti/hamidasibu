@@ -10,12 +10,12 @@ import { members } from '../data/members'
 import { usePageMeta } from '../hooks/usePageMeta'
 import { useMotion } from '../hooks/useMotion'
 
-const LIKES = ['ゲーム', '歌', '雑談', '企画', '表現活動']
+const DREAMS = ['歌手', 'アイドル', '声優']
 
 export default function Audition() {
   usePageMeta({
     title: 'AUDITION',
-    description: '次に、はみ出すのは君だ。ハミダシ部！オーディション情報（詳細公開予定）。',
+    description: '次に、はみ出すのは君だ。歌手・アイドル・声優を目指す人のためのハミダシ部！オーディション情報（詳細公開予定）。',
   })
   const ref = useRef<HTMLDivElement>(null)
   useMotion(ref)
@@ -38,9 +38,9 @@ export default function Audition() {
           </p>
           <MaskText as="h1" className="aud-hero__title" lines={['次に、', 'はみ出すのは', '君だ。']} />
           <p className="aud-hero__sub" data-reveal="" data-reveal-delay="0.3">
-            誰かと同じじゃなくていい。
+            歌手、アイドル、声優。
             <br />
-            その個性が、才能になる。
+            その夢を、VTuberとして叶えにいこう。
           </p>
         </div>
         <div className="aud-hero__cast" aria-hidden="true">
@@ -65,15 +65,17 @@ export default function Audition() {
           </h2>
           <div className="aud-about__body">
             <p data-reveal="">
-              ハミダシ部！は、他人と違う個性や、自分だけの情熱を大切にするVTuberグループです。
+              ハミダシ部！は、夢を持つ人がVTuberとして活動しながら、その夢を本気で叶えにいくための場所です。
             </p>
             <ul className="aud-about__likes" data-stagger="">
-              {LIKES.map((l) => (
-                <li key={l}>{l}</li>
+              {DREAMS.map((l) => (
+                <li key={l}>{l}になりたい</li>
               ))}
             </ul>
             <p data-reveal="">
-              あなたの「好き」や「得意」が、誰かに勇気を届けるかもしれません。
+              まだ誰にも見つけてもらえていない才能も、周りに笑われた夢も、ここでは武器になります。
+              <br />
+              夢を追いかけるあなたの姿が、画面の向こうの誰かに勇気を届けるかもしれません。
               <br />
               私たちは、自分らしく挑戦したい人との出会いを大切にしています。
             </p>

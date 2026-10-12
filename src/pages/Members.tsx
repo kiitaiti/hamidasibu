@@ -6,7 +6,7 @@ import { usePageMeta } from '../hooks/usePageMeta'
 import { useMotion } from '../hooks/useMotion'
 
 export default function Members() {
-  usePageMeta({ title: 'MEMBERS', description: 'ハミダシ部！のメンバー一覧。5人のハミダシもの、まもなく公開。' })
+  usePageMeta({ title: 'MEMBERS', description: 'ハミダシ部！のメンバー一覧。夢を追いかける5人のハミダシもの。' })
   const ref = useRef<HTMLElement>(null)
   useMotion(ref)
   return (
@@ -17,9 +17,9 @@ export default function Members() {
         tone="pink"
         lead={
           <p>
-            5人のハミダシもの、まもなく公開。
+            歌手、アイドル、声優。それぞれの夢を追いかける5人のハミダシもの。
             <br />
-            気になるシルエットをタップして、続報を待っていてください。
+            ビジュアルの公開まで、気になるあの子をチェックしておいてください。
           </p>
         }
       />
@@ -31,7 +31,7 @@ export default function Members() {
             ))}
           </div>
           <p className="members-page__note" data-reveal="">
-            ※ メンバーの名前・ビジュアル・プロフィールは、決まり次第このサイトのNEWSでお知らせします。
+            ※ メンバーのビジュアル・プロフィールは、決まり次第このサイトのNEWSでお知らせします。
           </p>
         </div>
       </section>

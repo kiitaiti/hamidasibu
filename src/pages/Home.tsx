@@ -95,7 +95,7 @@ export default function Home() {
           </h1>
           <p className="hero__sub">{site.subCopy}</p>
           <p className="hero__soon">
-            <span className="hero__soon-dot" aria-hidden="true" />5 MEMBERS — REVEAL COMING SOON
+            <span className="hero__soon-dot" aria-hidden="true" />5 MEMBERS — DEBUT COMING SOON
           </p>
         </div>
 
@@ -119,7 +119,7 @@ export default function Home() {
 
         <div className="hero__tape">
           <Marquee
-            items={['ハミダシ部！', 'MEMBER REVEAL COMING SOON', 'ハミダシものは、カガヤキものだ。', 'WHO ARE THEY?']}
+            items={['ハミダシ部！', 'DEBUT COMING SOON', 'ハミダシものは、カガヤキものだ。', 'CHASE YOUR DREAM']}
             tone="ink"
             speed={46}
           />
@@ -177,9 +177,11 @@ export default function Home() {
               <br />
               好きなことに、夢中になっていい。
               <br />
-              ハミダシ部！は、周りから少しはみ出した個性が集まる女性VTuberグループ。
+              歌手、アイドル、声優。ハミダシ部！は、本気の夢を持つ女の子たちが
               <br className="pc-only" />
-              自分らしく挑戦する姿で、画面の向こうのあなたに笑顔と勇気を届けます。
+              VTuberとして活動しながら、その夢を叶えにいくグループです。
+              <br className="pc-only" />
+              夢を追いかける姿で、画面の向こうのあなたに勇気を届けます。
             </p>
             <ArrowLink to="/about" tone="pink" className="habout__btn">
               MORE ABOUT
@@ -194,9 +196,9 @@ export default function Home() {
           <div className="hmembers__head">
             <SectionHead en="MEMBERS" ja="メンバー" />
             <p className="hmembers__lead" data-reveal="">
-              5人のハミダシもの、まもなく公開。
+              夢を追いかける、5人のハミダシもの。
               <br />
-              シルエットから、推しを見つけておいて。
+              デビューまで、シルエットから推しを見つけておいて。
             </p>
           </div>
         </div>
@@ -226,7 +228,7 @@ export default function Home() {
               lines={['次に、', 'はみ出すのは', '君だ。']}
             />
             <p className="haudition__sub" data-reveal="">
-              その個性を、ここから世界へ。
+              その夢を、ここから叶えにいこう。
             </p>
             <div className="haudition__actions" data-reveal="">
               {audition.status !== 'open' && <span className="badge">詳細公開予定</span>}

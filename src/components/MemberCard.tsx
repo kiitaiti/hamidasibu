@@ -8,7 +8,7 @@ export function MemberCard({ member, compact = false }: { member: Member; compac
     <Link
       to={`/members/${member.slug}`}
       className={`mcard mcard--${member.tone} ${compact ? 'mcard--compact' : ''}`}
-      aria-label={`MEMBER ${member.number}（${member.revealed ? displayName(member) : 'COMING SOON'}）のページへ`}
+      aria-label={`MEMBER ${member.number}（${displayName(member)}）のページへ`}
     >
       <div className="mcard__stage">
         <div className="mcard__bg" aria-hidden="true">
@@ -28,7 +28,7 @@ export function MemberCard({ member, compact = false }: { member: Member; compac
           <Sparkle size={12} /> MEMBER {member.number}
         </span>
         <span className="mcard__name">{displayName(member)}</span>
-        {!member.revealed && <span className="mcard__soon">COMING SOON</span>}
+        <span className="mcard__soon">{member.revealed ? member.profile.nameRoman : 'COMING SOON'}</span>
       </div>
     </Link>
   )

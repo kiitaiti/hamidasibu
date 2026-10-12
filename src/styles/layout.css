@@ -503,7 +503,7 @@
 }
 .ftr__name-ja {
   font-family: var(--f-display);
-  font-size: clamp(44px, 5vw, 72px);
+  font-size: clamp(32px, 3.4vw, 52px);
   line-height: 1.1;
 }
 .ftr__name-en {
@@ -569,7 +569,7 @@
     box-shadow: 5px 5px 0 var(--ink);
   }
   .ftr__name-ja {
-    font-size: 36px;
+    font-size: 28px;
   }
   .ftr__name-en {
     font-size: 12px;

@@ -16,6 +16,8 @@ const STORY: { text: string[]; size?: 'l' | 'xl'; tone?: 'pink' }[] = [
   { text: ['でも、私たちは思う。'], size: 'l' },
   { text: ['周りからはみ出した部分にこそ、', 'その人だけの魅力がある。'], size: 'xl', tone: 'pink' },
   { text: ['ハミダシ部！は、', 'そんな個性が集まる場所。'], size: 'l' },
+  { text: ['歌手、アイドル、声優。', 'ここに集まったのは、本気の夢を持つ女の子たち。', 'VTuberとして活動しながら、その夢を叶えにいく。'] },
+  { text: ['夢を追いかける姿は、', '見ている誰かの勇気になる。'], size: 'l' },
   { text: ['好きなことに夢中になることも、', '大きな夢に挑戦することも、', '誰かと違う道を選ぶことも。'] },
   { text: ['全部、自分らしさだ。'], size: 'xl' },
 ]
@@ -23,7 +25,7 @@ const STORY: { text: string[]; size?: 'l' | 'xl'; tone?: 'pink' }[] = [
 export default function About() {
   usePageMeta({
     title: 'ABOUT',
-    description: '普通じゃない。それが、いい。ハミダシ部！の想いと、MISSION・VISIONをご紹介します。',
+    description: '普通じゃない。それが、いい。夢を追いかけるVTuberグループ、ハミダシ部！の想いをご紹介します。',
   })
   const ref = useRef<HTMLDivElement>(null)
   useMotion(ref)

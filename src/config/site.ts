@@ -7,9 +7,9 @@ export const site = {
   name: 'ハミダシ部！',
   nameEn: 'HAMIDASHIBU!',
   catchCopy: 'ハミダシものは、カガヤキものだ。',
-  subCopy: 'はみ出した個性が、世界を変える。',
+  subCopy: 'ハミダシものが、世界を変える。',
   description:
-    'ハミダシ部！は、はみ出した個性が集まる女性VTuberグループ。ハミダシものは、カガヤキものだ。',
+    'ハミダシ部！は、歌手・アイドル・声優を目指す女の子たちが、夢を追いかけながら活動するVTuberグループ。ハミダシものは、カガヤキものだ。',
   operator: 'ARTICLE',
   /** 運営会社サイト（空にすると非表示） */
   operatorUrl: 'https://article58.jp',

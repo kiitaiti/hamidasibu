@@ -4,7 +4,7 @@ import { ArrowLink } from '../components/ArrowLink'
 import { MemberCard } from '../components/MemberCard'
 import { Silhouette } from '../components/Silhouette'
 import { Sparkle } from '../components/Sparkle'
-import { displayName, members, memberBySlug, type Member } from '../data/members'
+import { displayName, hasProfile, members, memberBySlug, type Member } from '../data/members'
 import { usePageMeta } from '../hooks/usePageMeta'
 import { useMotion } from '../hooks/useMotion'
 import { gsap } from '../lib/motion'
@@ -86,8 +86,8 @@ export default function MemberDetail() {
   const ref = useRef<HTMLDivElement>(null)
 
   usePageMeta({
-    title: member ? `MEMBER ${member.number}` : 'MEMBERS',
-    description: member ? `ハミダシ部！ MEMBER ${member.number}。プロフィールは近日公開。` : undefined,
+    title: member ? `${displayName(member)}（MEMBER ${member.number}）` : 'MEMBERS',
+    description: member ? `ハミダシ部！ MEMBER ${member.number} ${displayName(member)}のプロフィールページ。` : undefined,
   })
 
   useMotion(
@@ -138,7 +138,7 @@ export default function MemberDetail() {
             {displayName(member)}
             {member.revealed && member.profile.nameRoman && <small>{member.profile.nameRoman}</small>}
           </h1>
-          {member.revealed ? (
+          {member.revealed && hasProfile(member) ? (
             <Profile m={member} />
           ) : (
             <div className="mdetail__soon">
@@ -146,21 +146,21 @@ export default function MemberDetail() {
                 <span className="hero__soon-dot" aria-hidden="true" />
                 COMING SOON
               </p>
-              <p className="mdetail__soon-text">プロフィール公開まで、もう少しだけお待ちください。</p>
+              <p className="mdetail__soon-text">ビジュアルとプロフィールの公開まで、もう少しだけお待ちください。</p>
             </div>
           )}
           <nav className="mdetail__pn" aria-label="ほかのメンバーへ">
             <Link to={`/members/${prev.slug}`} className="mdetail__pn-btn">
               <Silhouette member={prev} alt="" />
               <span>
-                <small>PREV MEMBER</small>
-                MEMBER {prev.number}
+                <small>PREV MEMBER {prev.number}</small>
+                {displayName(prev)}
               </span>
             </Link>
             <Link to={`/members/${next.slug}`} className="mdetail__pn-btn mdetail__pn-btn--next">
               <span>
-                <small>NEXT MEMBER</small>
-                MEMBER {next.number}
+                <small>NEXT MEMBER {next.number}</small>
+                {displayName(next)}
               </span>
               <Silhouette member={next} alt="" />
             </Link>
