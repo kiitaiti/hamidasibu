@@ -1,0 +1,201 @@
+/* =========================================================
+   ハミダシ部！ — Design tokens & base
+   ========================================================= */
+:root {
+  /* Brand */
+  --pink: #e40080;          /* 参考画像からサンプリングしたメインピンク */
+  --pink-deep: #c2006c;
+  --pink-hot: #ff2e9a;
+  --pink-mid: #ff8cc6;
+  --pink-soft: #ffe2f0;
+  --pink-mist: #fff3f9;
+  --ink: #101010;
+  --paper: #ffffff;
+  --grey: #f5f5f5;
+  --grey-2: #e7e7e7;
+  --muted: #6b6b6b;
+
+  /* Type */
+  --f-en: 'Archivo', 'Arial Black', sans-serif;
+  --f-display: 'Dela Gothic One', 'Zen Kaku Gothic New', sans-serif;
+  --f-body: 'Zen Kaku Gothic New', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
+
+  /* Layout */
+  --gutter: clamp(16px, 4vw, 56px);
+  --max: 1280px;
+  --hdr-h: 76px;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --shadow-pop: 8px 8px 0 var(--ink);
+
+  color-scheme: light;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-padding-top: calc(var(--hdr-h) + 16px);
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--f-body);
+  font-size: 16px;
+  line-height: 1.9;
+  letter-spacing: 0.04em;
+  font-feature-settings: 'palt' 1;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+html.is-menu-open {
+  overflow: hidden;
+}
+
+img,
+picture,
+svg {
+  display: block;
+  max-width: 100%;
+}
+img {
+  height: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+h1,
+h2,
+h3,
+p,
+ul,
+ol,
+dl,
+dd,
+figure {
+  margin: 0;
+}
+ul,
+ol {
+  padding: 0;
+  list-style: none;
+}
+
+:focus-visible {
+  outline: 3px solid var(--pink);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: var(--pink);
+  color: var(--paper);
+}
+
+.container {
+  width: 100%;
+  max-width: calc(var(--max) + var(--gutter) * 2);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+.container--narrow {
+  max-width: calc(880px + var(--gutter) * 2);
+}
+
+.section {
+  padding-block: clamp(80px, 11vw, 160px);
+}
+
+.sp-only {
+  display: none !important;
+}
+@media (max-width: 767px) {
+  .sp-only {
+    display: initial !important;
+  }
+  .btn.sp-only {
+    display: inline-flex !important;
+  }
+  .pc-only {
+    display: none !important;
+  }
+}
+
+.skip {
+  position: fixed;
+  left: 12px;
+  top: -60px;
+  z-index: 200;
+  background: var(--ink);
+  color: var(--paper);
+  padding: 10px 16px;
+  font-weight: 700;
+}
+.skip:focus {
+  top: 12px;
+}
+
+/* マスク見出し：行ごとに下から立ち上がる */
+.mask-line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
+}
+.mask-line > span {
+  display: inline-block;
+  will-change: transform;
+}
+
+/* ページ遷移のフェード */
+.page {
+  animation: page-in 0.7s var(--ease) both;
+}
+@keyframes page-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+}
+.page-loading {
+  min-height: 100vh;
+}
+
+.sparkle {
+  display: inline-block;
+  flex: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* 斜めのテープ等がはみ出しても横スクロールを発生させない（sticky を壊さない clip を使用） */
+#root {
+  overflow-x: clip;
+}
