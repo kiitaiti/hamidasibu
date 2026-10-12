@@ -21,6 +21,8 @@ export const site = {
   /** プライバシーポリシーの制定日（例: '2026年11月1日'）。空なら非表示 */
   privacyEffectiveDate: '',
   copyrightYear: 2026,
+  /** microCMS 未設定のとき、仮のニュース（src/data/news.sample.ts）を表示する。正式公開前に false へ */
+  useSampleNews: true,
 } as const
 
 /** プレビュー環境（Netlify以外）で動いているかどうか */

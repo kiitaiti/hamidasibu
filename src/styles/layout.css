@@ -453,12 +453,15 @@
 .ftr__castwrap {
   position: relative;
   z-index: 1;
+  /* 上方向（フッターの外）にだけ頭をはみ出させ、下は切ってページ末尾に余白を作らない */
+  margin-top: -110px;
+  overflow: clip;
 }
 .ftr__cast {
   position: absolute;
   right: -2%;
-  bottom: -46%;
-  height: 158%;
+  bottom: -52%;
+  height: 150%;
   pointer-events: none;
 }
 .ftr__cast picture,
@@ -547,6 +550,7 @@
   }
   .ftr__castwrap {
     height: 460px;
+    margin-top: 0;
     margin-inline: calc(var(--gutter) * -1);
     overflow: hidden;
   }

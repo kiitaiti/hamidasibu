@@ -66,6 +66,7 @@ APIキーは `netlify/functions/news.mts` の中だけで使い、ブラウザ�
 
 | 何を | どこで |
 |---|---|
+| 仮のニュース（架空の内容） | `src/data/news.sample.ts`。正式公開前に `src/config/site.ts` の `useSampleNews` を `false` に |
 | 公式 YouTube / X のURL | `src/config/site.ts` の `sns`（空の間は COMING SOON 表示） |
 | プライバシーポリシー制定日 | `src/config/site.ts` の `privacyEffectiveDate` |
 | プライバシーポリシー本文 | `src/pages/Privacy.tsx`（一般的な内容の雛形です。公開前に確認を） |

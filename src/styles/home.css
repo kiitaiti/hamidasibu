@@ -473,8 +473,11 @@
   margin-top: 24px;
   font-family: var(--f-display);
   font-weight: 400;
-  font-size: clamp(48px, 7.4vw, 120px);
+  font-size: clamp(40px, 5.8vw, 96px);
   line-height: 1.12;
+}
+.haudition__title .mask-line > span {
+  white-space: nowrap;
 }
 .haudition__title .mask-line:last-child > span {
   color: var(--paper);

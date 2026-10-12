@@ -21,6 +21,29 @@ export type NewsDetailResult = {
   status: 'ok' | 'notfound' | 'unavailable'
 }
 
+import { site } from '../config/site'
+import { SAMPLE_NEWS } from '../data/news.sample'
+
+const sampleList = (opts: { limit?: number; offset?: number; category?: string }): NewsListResult => {
+  const all = SAMPLE_NEWS.filter((n) => !opts.category || n.category === opts.category)
+  const offset = opts.offset ?? 0
+  const items = all.slice(offset, offset + (opts.limit ?? 10))
+  return { items, total: all.length, status: items.length ? 'ok' : 'empty' }
+}
+
+const sampleDetail = (id: string): NewsDetailResult => {
+  const i = SAMPLE_NEWS.findIndex((n) => n.id === id)
+  if (i < 0) return { item: null, prev: null, next: null, status: 'notfound' }
+  const older = SAMPLE_NEWS[i + 1]
+  const newer = SAMPLE_NEWS[i - 1]
+  return {
+    item: SAMPLE_NEWS[i],
+    prev: older ? { id: older.id, title: older.title } : null,
+    next: newer ? { id: newer.id, title: newer.title } : null,
+    status: 'ok',
+  }
+}
+
 export const NEWS_CATEGORIES = ['INFORMATION', 'MEMBERS', 'EVENT', 'AUDITION'] as const
 
 const API = '/api/news'
@@ -31,27 +54,32 @@ export async function fetchNewsList(opts: { limit?: number; offset?: number; cat
   try {
     const r = await fetch(`${API}?${q}`, { headers: { accept: 'application/json' } })
     if (!r.ok || !r.headers.get('content-type')?.includes('json')) {
-      return { items: [], total: 0, status: 'unavailable' }
+      return site.useSampleNews ? sampleList(opts) : { items: [], total: 0, status: 'unavailable' }
     }
     const d = await r.json()
     const items = (d.contents ?? []) as NewsItem[]
     return { items, total: d.totalCount ?? items.length, status: items.length ? 'ok' : 'empty' }
   } catch {
-    return { items: [], total: 0, status: 'unavailable' }
+    return site.useSampleNews ? sampleList(opts) : { items: [], total: 0, status: 'unavailable' }
   }
 }
 
 export async function fetchNewsDetail(id: string): Promise<NewsDetailResult> {
   try {
     const r = await fetch(`${API}?id=${encodeURIComponent(id)}`, { headers: { accept: 'application/json' } })
-    if (r.status === 404) return { item: null, prev: null, next: null, status: 'notfound' }
-    if (!r.ok || !r.headers.get('content-type')?.includes('json')) {
-      return { item: null, prev: null, next: null, status: 'unavailable' }
+    const isJson = !!r.headers.get('content-type')?.includes('json')
+    // CMS 設定済みで記事が無いだけなら 404 をそのまま返す
+    if (r.status === 404 && isJson) return { item: null, prev: null, next: null, status: 'notfound' }
+    if (!r.ok || !isJson) {
+      if (site.useSampleNews) return sampleDetail(id)
+      return r.status === 404
+        ? { item: null, prev: null, next: null, status: 'notfound' }
+        : { item: null, prev: null, next: null, status: 'unavailable' }
     }
     const d = await r.json()
     return { item: d.item, prev: d.prev ?? null, next: d.next ?? null, status: d.item ? 'ok' : 'notfound' }
   } catch {
-    return { item: null, prev: null, next: null, status: 'unavailable' }
+    return site.useSampleNews ? sampleDetail(id) : { item: null, prev: null, next: null, status: 'unavailable' }
   }
 }
 
