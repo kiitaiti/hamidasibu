@@ -29,7 +29,6 @@ export default function Home() {
   }, [])
 
   useMotion(ref, () => {
-    const root = ref.current!
     const tl = gsap.timeline({ defaults: { ease: 'expo.out' } })
     tl.from('.hero__slab', { clipPath: 'polygon(0 100%, 100% 100%, 100% 100%, 0 100%)', duration: 1.2, ease: 'power4.inOut' })
       .from('.hero__sil', { yPercent: 40, autoAlpha: 0, duration: 1.3, stagger: { each: 0.09, from: 'center' } }, '-=0.55')
@@ -54,16 +53,6 @@ export default function Home() {
       ease: 'none',
       scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 0.5 },
     })
-    // ABOUT の大きなコピーで「ハミダシ」が枠からはみ出していく
-    gsap.fromTo(
-      root.querySelectorAll('.habout__hami'),
-      { x: 0 },
-      {
-        x: () => Math.min(window.innerWidth * 0.06, 90),
-        ease: 'none',
-        scrollTrigger: { trigger: '.habout', start: 'top 70%', end: 'bottom 30%', scrub: 0.6 },
-      },
-    )
   })
 
   return (
@@ -196,9 +185,11 @@ export default function Home() {
           <div className="hmembers__head">
             <SectionHead en="MEMBERS" ja="メンバー" />
             <p className="hmembers__lead" data-reveal="">
-              夢を追いかける、5人のハミダシもの。
+              ハミダシ部に所属する、5人のハミダシもの。
               <br />
-              デビューまで、シルエットから推しを見つけておいて。
+              全員がそれぞれの夢を持っており、
+              <br className="sp-only" />
+              日々それに向けて活動しています。
             </p>
           </div>
         </div>
